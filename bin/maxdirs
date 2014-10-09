@@ -1,0 +1,16 @@
+#!/usr/bin/env node
+
+var maxdirs = require('../lib/maxdirs');
+
+var dir = process.argv[2];
+var max = process.argv[3];
+
+maxdirs.purge(dir, max, function(err, n) {
+    if (err) {
+        console.error('Error: ' + err.message);
+        console.error(err.stack);
+        process.exit(1);
+    }
+    console.info('Deleted %d directories from %s', n, dir);
+    process.exit(0);
+});
